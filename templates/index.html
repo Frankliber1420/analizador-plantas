@@ -1,0 +1,581 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroAI | Enterprise Agricultural Intelligence</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- CSS Externo -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    
+    <!-- Librerías de exportación -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <!-- Header / Navigation Bar Ultra-Dynamic -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-premium sticky-top">
+        <div class="container-fluid px-2 px-lg-4">
+            
+            <!-- Logotipo Corporativo Dinámico y Resplandeciente -->
+            <a class="navbar-brand brand-logo-container me-4 d-flex align-items-center gap-2.5 text-decoration-none" href="/">
+                <div class="brand-icon-glowing">
+                    <i class="bi bi-cpu-fill"></i>
+                </div>
+                <div class="d-flex flex-column">
+                    <span class="brand-title-glowing text-white fs-5 lh-1">
+                        AgroAI <span class="pro-badge-text">Pro</span>
+                    </span>
+                    <span class="brand-subtitle-interactive font-mono mt-0.5">
+                        Enterprise Phytosanitary Vision
+                    </span>
+                </div>
+            </a>
+            <button class="navbar-toggler border-0 shadow-none p-1.5" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAgroAI">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarAgroAI">
+                <!-- Menú de Opciones Interactivas -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center gap-2">
+                    
+                    <!-- Fitosanitario -->
+                    <li class="nav-item nav-mega-item">
+                        <a class="nav-link nav-link-saas d-flex align-items-center gap-2" href="#">
+                            <i class="bi bi-shield-check text-emerald-400"></i>
+                            <span>Fitosanitario</span>
+                            <i class="bi bi-chevron-down ms-1 text-slate-400" style="font-size: 0.7rem;"></i>
+                        </a>
+                        <div class="mega-dropdown-menu">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <i class="bi bi-patch-check-fill text-emerald-400 fs-5"></i>
+                                <span class="mega-title">Monitoreo Fitosanitario IA</span>
+                            </div>
+                            <p class="mega-desc mb-3">
+                                Detección automatizada de <strong>Marchitez Sorpresiva</strong>, <strong>Marchitez Avanzada</strong> y <strong>Manchas Foliares</strong> en palma de aceite.
+                            </p>
+                            <div class="mega-badge-box d-flex justify-content-between align-items-center">
+                                <span>Precisión Diagnóstica</span>
+                                <span class="badge bg-success bg-opacity-20 text-success border border-success border-opacity-30">98.4%</span>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Segmentación U-NET -->
+                    <li class="nav-item nav-mega-item">
+                        <a class="nav-link nav-link-saas d-flex align-items-center gap-2" href="#">
+                            <i class="bi bi-layers text-emerald-400"></i>
+                            <span>Segmentación U-NET</span>
+                            <i class="bi bi-chevron-down ms-1 text-slate-400" style="font-size: 0.7rem;"></i>
+                        </a>
+                        <div class="mega-dropdown-menu">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <i class="bi bi-intersect text-emerald-400 fs-5"></i>
+                                <span class="mega-title">Segmentación U-NET</span>
+                            </div>
+                            <p class="mega-desc mb-3">
+                                Red neuronal para aislar la hoja y aplicar efecto Bokeh.
+                            </p>
+                            <div class="mega-badge-box d-flex justify-content-between align-items-center">
+                                <span>Tiempo Inferencia</span>
+                                <span class="badge bg-info bg-opacity-20 text-info border border-info border-opacity-30">&lt; 180 ms</span>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Tecnologías -->
+                    <li class="nav-item nav-mega-item">
+                        <a class="nav-link nav-link-saas d-flex align-items-center gap-2" href="#">
+                            <i class="bi bi-cpu text-emerald-400"></i>
+                            <span>Tecnologías</span>
+                            <i class="bi bi-chevron-down ms-1 text-slate-400" style="font-size: 0.7rem;"></i>
+                        </a>
+                        <div class="mega-dropdown-menu">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <i class="bi bi-diagram-3-fill text-emerald-400 fs-5"></i>
+                                <span class="mega-title">Stack Multimodelo PyTorch</span>
+                            </div>
+                            <ul class="list-unstyled mega-desc mb-0 d-flex flex-column gap-2">
+                                <li class="d-flex align-items-center gap-2"><i class="bi bi-check2-circle text-emerald-400"></i> <strong>EfficientNet-B0:</strong> Clasificación foliar fitosanitaria.</li>
+                                <li class="d-flex align-items-center gap-2"><i class="bi bi-check2-circle text-emerald-400"></i> <strong>Flask + SQLite:</strong> Persistencia segura.</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <!-- Área de Usuario y Autenticación -->
+                <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+                    {% if user_name %}
+                        <div class="user-badge-premium">
+                            <div class="user-avatar-glowing">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+                            <span class="user-name-text">{{ user_name }}</span>
+                            <span class="user-online-indicator"></span>
+                        </div>
+                        <button class="btn btn-saas-exit btn-sm" id="btnLogout">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Salir</span>
+                        </button>
+                    {% else %}
+                        <button class="btn btn-saas-ghost btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            <span>Iniciar Sesión</span>
+                        </button>
+                        <button class="btn btn-saas-primary-pro btn-sm" data-bs-toggle="modal" data-bs-target="#registerModal">
+                            <i class="bi bi-shield-lock-fill"></i>
+                            <span>Crear Cuenta</span>
+                        </button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Hero Body Container -->
+    <main class="container my-5 flex-grow-1">
+        
+        <!-- Header Title Section -->
+        <div class="text-center mb-4">
+            <span class="badge badge-hero-pill px-3 py-2 rounded-pill text-uppercase fs-8 mb-3 d-inline-block shadow-sm">
+                🌱 SISTEMA INTELIGENTE DE INSPECCIÓN FOLIAR
+            </span>
+            <h1 class="fw-extrabold text-slate-900 tracking-tight fs-2 fs-md-1 mb-2">
+                Protección Agrónoma Avanzada en Palmas
+            </h1>
+            <p class="text-secondary fs-6 mx-auto fw-normal mb-3" style="max-width: 650px;">
+                Cargue la fotografía foliar para ejecutar inferencia multimodelo mediante EfficientNet-B0 y validación anatómica anti-anomalías.
+            </p>
+            <button class="btn btn-sm btn-outline-success font-semibold px-3 py-1.5 rounded-pill shadow-sm" data-bs-toggle="collapse" data-bs-target="#explanationCollapse">
+                <i class="bi bi-lightbulb-fill text-warning me-1"></i> ¿Cómo funciona el análisis inteligente?
+            </button>
+        </div>
+
+        <!-- Sección Desplegable Informativa -->
+        <div class="collapse mb-5" id="explanationCollapse">
+            <div class="tech-info-card p-4 mx-auto" style="max-width: 850px;">
+                <h5 class="fw-bold text-dark mb-3 text-center"><i class="bi bi-gear-wide-connected text-success me-2"></i> Flujo de Procesamiento IA</h5>
+                <div class="row g-3 text-start">
+                    <div class="col-md-4">
+                        <div class="p-3 bg-light rounded-3 h-100 border border-slate-200">
+                            <span class="badge bg-success text-white mb-2">1. Segmentación U-NET</span>
+                            <h6 class="fw-bold text-dark fs-7">Aislamiento Foliar (Bokeh)</h6>
+                            <p class="text-muted small mb-0">Red neuronal con arquitectura en "U" que aísla la hoja generando una máscara binaria para aplicar efecto Bokeh.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-light rounded-3 h-100 border border-slate-200">
+                            <span class="badge bg-primary text-white mb-2">2. Detector Anti-OOD</span>
+                            <h6 class="fw-bold text-dark fs-7">Filtro Anatómico</h6>
+                            <p class="text-muted small mb-0">Verifica mediante descriptores fisionómicos que la imagen corresponda a una palma de aceite válida.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-light rounded-3 h-100 border border-slate-200">
+                            <span class="badge bg-warning text-dark mb-2">3. EfficientNet-B0</span>
+                            <h6 class="fw-bold text-dark fs-7">Clasificación Fitosanitaria</h6>
+                            <p class="text-muted small mb-0">Evalúa la presencia de patologías como Manchas Foliares o Marchitez con alta precisión.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 items-stretch">
+            
+            <!-- Left Side: Inspection Card -->
+            <div class="col-lg-5">
+                <div class="premium-card p-4 h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="fw-bold text-dark m-0 d-flex align-items-center gap-2">
+                                <i class="bi bi-cpu text-success"></i> Módulo de Inspección
+                            </h5>
+                            <span class="badge bg-light text-secondary font-medium border">v1.0 Agro IA</span>
+                        </div>
+                        <form id="uploadForm" class="d-flex flex-column h-100">
+                            {% if user_name %}
+                                <div class="upload-zone-modern p-4 my-3 flex-grow-1 d-flex flex-column justify-content-center align-items-center text-center" id="dropZone" onclick="document.getElementById('fileInput').click();">
+                                    <div id="dropZoneDefault">
+                                        <div class="bg-success bg-opacity-10 p-3 rounded-circle d-inline-block mb-3 text-success">
+                                            <i class="bi bi-cloud-arrow-up-fill fs-3"></i>
+                                        </div>
+                                        <h6 class="fw-bold text-dark mb-1">Arrastre o seleccione la imagen foliar</h6>
+                                        <p class="text-muted small mb-0">Soporta formatos alta resolución: JPG, PNG, WEBP</p>
+                                    </div>
+                                    <div id="previewContainer" class="d-none w-100">
+                                        <img id="imagePreview" src="" class="rounded-2 mb-2 shadow-sm" alt="Previsualización" style="max-height: 190px; object-fit: contain; width: 100%;">
+                                        <p id="fileName" class="text-secondary small mb-0 font-semibold"></p>
+                                    </div>
+                                    <input type="file" id="fileInput" name="file" accept="image/*" class="d-none">
+                                </div>
+                                <div class="d-flex gap-2 mt-auto pt-2">
+                                    <button type="submit" class="btn btn-brand w-100 py-2.5 font-bold shadow-sm" id="btnAnalizar">
+                                        <i class="bi bi-play-fill me-1 fs-5 align-middle"></i> Ejecutar Inferencia
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary py-2.5 font-bold d-none" id="btnReset">
+                                        <i class="bi bi-arrow-counterclockwise"></i>
+                                    </button>
+                                </div>
+                            {% else %}
+                                <div class="upload-zone-modern p-4 my-3 flex-grow-1 d-flex flex-column justify-content-center align-items-center text-center" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                    <div class="bg-light p-3 rounded-circle mb-3 text-secondary border">
+                                        <i class="bi bi-lock-fill fs-3"></i>
+                                    </div>
+                                    <h6 class="fw-bold text-dark mb-1">Acceso Restringido</h6>
+                                    <p class="text-muted small mb-0" style="max-width: 260px;">Inicie sesión o registre su cuenta corporativa para desbloquear el módulo de inspección.</p>
+                                </div>
+                                <div class="mt-auto pt-2">
+                                    <button type="button" class="btn btn-brand w-100 py-2.5 font-bold shadow-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                        Iniciar Sesión para Analizar
+                                    </button>
+                                </div>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Interactive Field Visualizer -->
+            <div class="col-lg-7">
+                <div class="premium-card p-4 h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h5 class="fw-bold text-dark m-0 d-flex align-items-center gap-2">
+                                    <i class="bi bi-camera-reels-fill text-success"></i> Monitoreo y Manejo Fitosanitario
+                                </h5>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <button class="btn btn-sm btn-light border rounded-circle text-secondary p-1" id="btnToggleAuto" title="Pausar / Reproducir Rotación Automática" onclick="toggleAutoPlay()">
+                                    <i class="bi bi-pause-fill fs-6" id="iconAuto"></i>
+                                </button>
+                                <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-20 font-medium">Lote de Palma 04</span>
+                            </div>
+                        </div>
+                        <!-- Main Hero Interactive Container -->
+                        <div class="hero-gallery-container mb-3" id="heroContainer">
+                            <span class="hero-gallery-badge" id="heroBadge">
+                                <i class="bi bi-geo-alt-fill text-success me-1"></i> Cosecha y Corte en Lote
+                            </span>
+                            
+                            <!-- Slider Controls -->
+                            <button class="hero-nav-btn prev" onclick="prevHeroImage()" title="Anterior">
+                                <i class="bi bi-chevron-left"></i>
+                            </button>
+                            <button class="hero-nav-btn next" onclick="nextHeroImage()" title="Siguiente">
+                                <i class="bi bi-chevron-right"></i>
+                            </button>
+                            <!-- Interactive Main Image -->
+                            <img id="heroMainView" 
+                                 src="{{ url_for('static', filename='imagenes_del_aplicativo/imagen_1.jpg') }}" 
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=1000&q=80';"
+                                 class="hero-gallery-view" 
+                                 alt="Vista Principal de Campo">
+                        </div>
+                        <!-- Extended Thumbnails Gallery -->
+                        <div class="thumb-nav-scroll" id="thumbNav">
+                            <div class="thumb-item active" onclick="setHeroImage(0)">
+                                <img src="{{ url_for('static', filename='imagenes_del_aplicativo/imagen_1.jpg') }}" 
+                                     onerror="this.src='https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=300&q=80'" alt="Cosecha">
+                            </div>
+                            <div class="thumb-item" onclick="setHeroImage(1)">
+                                <img src="{{ url_for('static', filename='imagenes_del_aplicativo/imagen_2.jpg') }}" 
+                                     onerror="this.src='https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=300&q=80'" alt="Monitoreo">
+                            </div>
+                            <div class="thumb-item" onclick="setHeroImage(2)">
+                                <img src="{{ url_for('static', filename='imagenes_del_aplicativo/imagen_3.jpg') }}" 
+                                     onerror="this.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=300&q=80'" alt="Plateo">
+                            </div>
+                            <div class="thumb-item" onclick="setHeroImage(3)">
+                                <img src="{{ url_for('static', filename='imagenes_del_aplicativo/image_4.jpg') }}" 
+                                     onerror="this.src='https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=300&q=80'" alt="Supervisión">
+                            </div>
+                            <div class="thumb-item" onclick="setHeroImage(4)">
+                                <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ff?auto=format&fit=crop&w=300&q=80" alt="Inspección Cogollo">
+                            </div>
+                            <div class="thumb-item" onclick="setHeroImage(5)">
+                                <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=300&q=80" alt="Monitoreo Dron">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loadingSpinner" class="text-center my-5 d-none">
+            <div class="spinner-border text-success" style="width: 3rem; height: 3rem;" role="status">
+                <span class="visually-hidden">Procesando...</span>
+            </div>
+            <p class="mt-3 text-secondary font-semibold fs-6">Ejecutando inferencia con EfficientNet-B0 y validación anti-OOD...</p>
+        </div>
+
+        <div id="resultContainer" class="mt-5 d-none">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <span class="text-muted font-medium text-xs text-uppercase tracking-wider">Resultado del Diagnóstico</span>
+                    <h2 class="fw-extrabold text-dark mb-1" id="txtDiagnostico">--</h2>
+                    <span class="badge bg-success bg-opacity-10 text-success fs-6 px-3 py-1.5 rounded-pill font-semibold" id="txtConfianza"></span>
+                    <span class="badge fs-6 px-3 py-1.5 rounded-pill font-semibold ms-1" id="badgeSeveridad"></span>
+                </div>
+                <button class="btn btn-outline-danger font-semibold px-4 py-2 rounded-3 shadow-sm" id="btnDownloadPDF">
+                    <i class="bi bi-file-earmark-pdf-fill me-2"></i> Exportar PDF
+                </button>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="premium-card p-3 text-center">
+                        <h6 class="fw-bold text-secondary mb-2">Segmentación YOLO (Bokeh)</h6>
+                        <img id="imgEntrante" src="" class="img-fluid rounded-2 border" alt="Aislamiento" onclick="openZoomModal(this.src, 'Segmentación YOLO (Bokeh)')">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="premium-card p-3 text-center">
+                        <h6 class="fw-bold text-secondary mb-2">Visualización Inferencia</h6>
+                        <img id="imgGradCAM" src="" class="img-fluid rounded-2 border" alt="Grad-CAM" onclick="openZoomModal(this.src, 'Visualización Inferencia')">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="premium-card p-3 text-center">
+                        <h6 class="fw-bold text-secondary mb-2">Distribución Probabilística</h6>
+                        <img id="imgChart" src="" class="img-fluid rounded-2 border" alt="Distribución" onclick="openZoomModal(this.src, 'Distribución Probabilística')">
+                    </div>
+                </div>
+            </div>
+            <div class="premium-card mt-4 p-4">
+                <h5 class="fw-bold text-dark mb-3"><i class="bi bi-clipboard-check text-success me-2"></i> Recomendaciones Agronómicas</h5>
+                <ul class="list-group list-group-flush" id="listAcciones"></ul>
+            </div>
+            <div class="premium-card mt-4 p-4">
+                <h5 class="fw-bold text-dark mb-3"><i class="bi bi-clock-history me-2"></i> Historial Reciente de la Sesión</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Marca de Tiempo</th>
+                                <th>Archivo</th>
+                                <th>Diagnóstico</th>
+                                <th>Nivel de Confianza</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableHistorial"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-3 overflow-hidden">
+                <div class="modal-header bg-dark text-white p-4 border-0">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-shield-lock text-success me-2"></i> Iniciar Sesión</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div id="loginAlert" class="alert alert-danger d-none small"></div>
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label font-semibold text-dark">Correo Electrónico</label>
+                            <input type="email" id="loginEmail" class="form-control py-2.5 rounded-2" placeholder="nombre@empresa.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label font-semibold text-dark">Contraseña</label>
+                            <div class="input-group"><input type="password" id="loginPassword" class="form-control py-2.5 rounded-start-2" placeholder="••••••••" required><button class="btn btn-outline-secondary" type="button" onclick="togglePassword('loginPassword', 'iconLoginEye')"><i class="bi bi-eye-fill" id="iconLoginEye"></i></button></div>
+                        </div>
+                        <button type="submit" class="btn btn-brand w-100 py-2.5 font-bold">Iniciar Sesión</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-3 overflow-hidden">
+                <div class="modal-header bg-dark text-white p-4 border-0">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-person-plus text-success me-2"></i> Crear Cuenta</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div id="registerAlert" class="alert alert-danger d-none small"></div>
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label class="form-label font-semibold text-dark">Nombre Completo</label>
+                            <input type="text" id="regName" class="form-control py-2.5 rounded-2" placeholder="Ing. Carlos Pérez" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label font-semibold text-dark">Correo Electrónico</label>
+                            <input type="email" id="regEmail" class="form-control py-2.5 rounded-2" placeholder="correo@empresa.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label font-semibold text-dark">Contraseña</label>
+                            <div class="input-group"><input type="password" id="regPassword" class="form-control py-2.5 rounded-start-2" placeholder="••••••••" required><button class="btn btn-outline-secondary" type="button" onclick="togglePassword('regPassword', 'iconRegEye')"><i class="bi bi-eye-fill" id="iconRegEye"></i></button></div>
+                        </div>
+                        <button type="submit" class="btn btn-brand w-100 py-2.5 font-bold">Registrarse</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Zoom Modal -->
+    <div class="modal fade" id="zoomModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 bg-dark text-white rounded-3 overflow-hidden">
+                <div class="modal-header border-0 text-white p-3">
+                    <h6 class="modal-title font-semibold" id="zoomModalTitle">Previsualización de Inferencia</h6>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-2 text-center">
+                    <img id="zoomModalImg" src="" class="img-fluid rounded" alt="Zoom">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quality / Technical Specifications Modal (ISO/IEC 25010) -->
+    <div class="modal fade" id="qualityModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="modal-header bg-dark text-white p-4 border-0">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-patch-check-fill text-success me-2"></i> Ficha Técnica y Estándares ISO/IEC 25010</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4 text-start bg-light">
+                    <p class="text-secondary small mb-4">
+                        <strong>AgroAI Pro</strong> es una solución agrotecnológica avanzada orientada al diagnóstico fitosanitario en cultivos de palma de aceite mediante inteligencia artificial de alta precisión.
+                    </p>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <div class="p-3 bg-white rounded-3 border h-100">
+                                <h6 class="fw-bold text-dark fs-7 mb-2"><i class="bi bi-shield-check text-success me-1"></i> Fiabilidad y Seguridad</h6>
+                                <p class="text-muted small mb-0">Validación de entradas mediante detector anti-anomalías (Anti-OOD) y control de sesiones seguras con cifrado por huella.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 bg-white rounded-3 border h-100">
+                                <h6 class="fw-bold text-dark fs-7 mb-2"><i class="bi bi-speedometer2 text-success me-1"></i> Eficiencia de Desempeño</h6>
+                                <p class="text-muted small mb-0">Inferencia multimodelo optimizada en PyTorch (EfficientNet-B0 + U-Net) con tiempos de respuesta inferiores a 200 ms.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="p-3 bg-white rounded-3 border h-100">
+                                <h6 class="fw-bold text-dark fs-7 mb-2"><i class="bi bi-phone text-success me-1"></i> Usabilidad y Accesibilidad</h6>
+                                <p class="text-muted small mb-0">Interfaz responsiva basada en diseño Glassmorphism adaptada para operadores de campo e ingenieros agrónomos.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 bg-white rounded-3 border h-100">
+                                <h6 class="fw-bold text-dark fs-7 mb-2"><i class="bi bi-tools text-success me-1"></i> Mantenibilidad</h6>
+                                <p class="text-muted small mb-0">Arquitectura modular en Flask con separación limpia de componentes estáticos, controladores y plantillas HTML.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-white border-top p-3">
+                    <button type="button" class="btn btn-secondary btn-sm px-4 rounded-pill font-semibold" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-white border-top py-4 mt-auto">
+        <div class="container px-4 text-center text-md-between d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+            <span class="text-muted small">
+                <strong>AgroAI System</strong> • Proyecto de Grado | Ingeniería en Redes y Telecomunicaciones
+            </span>
+            <button class="btn btn-sm btn-outline-dark rounded-pill px-3 py-1 font-semibold small" data-bs-toggle="modal" data-bs-target="#qualityModal">
+                <i class="bi bi-patch-check-fill text-success me-1"></i> Ficha Técnica y Estándares ISO/IEC 25010
+            </button>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS & Main JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    <script>
+        const galleryItems = [
+            { src: "{{ url_for('static', filename='imagenes_del_aplicativo/imagen_1.jpg') }}", fallback: 'https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=1000&q=80', title: 'Cosecha y Corte en Lote' },
+            { src: "{{ url_for('static', filename='imagenes_del_aplicativo/imagen_2.jpg') }}", fallback: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1000&q=80', title: 'Monitoreo Foliar de Palmas' },
+            { src: "{{ url_for('static', filename='imagenes_del_aplicativo/imagen_3.jpg') }}", fallback: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=80', title: 'Mantenimiento y Plateo' },
+            { src: "{{ url_for('static', filename='imagenes_del_aplicativo/image_4.jpg') }}", fallback: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1000&q=80', title: 'Supervisión Agrónoma' },
+            { src: 'https://images.unsplash.com/photo-1586771107445-d3ca888129ff?auto=format&fit=crop&w=1000&q=80', fallback: '', title: 'Inspección de Cogollo Sanitario' },
+            { src: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1000&q=80', fallback: '', title: 'Monitoreo Técnico por Dron' }
+        ];
+        let currentIndex = 0;
+        let isAutoPlaying = true;
+        let autoPlayInterval = setInterval(nextHeroImage, 4000);
+        function updateHeroDisplay() {
+            const item = galleryItems[currentIndex];
+            const mainImg = document.getElementById('heroMainView');
+            const badge = document.getElementById('heroBadge');
+            mainImg.style.opacity = '0.3';
+            setTimeout(() => {
+                mainImg.src = item.src;
+                mainImg.onerror = function() {
+                    if (item.fallback) this.src = item.fallback;
+                };
+                badge.innerHTML = `<i class="bi bi-geo-alt-fill text-success me-1"></i> ${item.title}`;
+                mainImg.style.opacity = '1';
+            }, 150);
+            const thumbs = document.querySelectorAll('.thumb-item');
+            thumbs.forEach((el, idx) => {
+                if (idx === currentIndex) {
+                    el.classList.add('active');
+                    el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                } else {
+                    el.classList.remove('active');
+                }
+            });
+        }
+        function setHeroImage(index) {
+            currentIndex = index;
+            updateHeroDisplay();
+            resetAutoPlay();
+        }
+        function nextHeroImage() {
+            currentIndex = (currentIndex + 1) % galleryItems.length;
+            updateHeroDisplay();
+        }
+        function prevHeroImage() {
+            currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+            updateHeroDisplay();
+            resetAutoPlay();
+        }
+        function toggleAutoPlay() {
+            const icon = document.getElementById('iconAuto');
+            if (isAutoPlaying) {
+                clearInterval(autoPlayInterval);
+                icon.className = 'bi bi-play-fill fs-6';
+                isAutoPlaying = false;
+            } else {
+                autoPlayInterval = setInterval(nextHeroImage, 4000);
+                icon.className = 'bi bi-pause-fill fs-6';
+                isAutoPlaying = true;
+            }
+        }
+        function resetAutoPlay() {
+            if (isAutoPlaying) {
+                clearInterval(autoPlayInterval);
+                autoPlayInterval = setInterval(nextHeroImage, 4000);
+            }
+        }
+        function openZoomModal(src, title) {
+            document.getElementById('zoomModalImg').src = src;
+            document.getElementById('zoomModalTitle').innerText = title;
+            new bootstrap.Modal(document.getElementById('zoomModal')).show();
+        }
+    </script>
+</body>
+</html>
