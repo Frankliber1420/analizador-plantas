@@ -335,7 +335,11 @@ def predict():
         
         if yolo_model is not None:
             results = yolo_model(pil_img)
-            gradcam_bgr = results[0].plot()
+            # Solución para modelo segment (evita AttributeError 'detect')
+            try:
+                gradcam_bgr = results[0].plot(boxes=False)
+            except TypeError:
+                gradcam_bgr = results[0].plot()
             gradcam_rgb = cv2.cvtColor(gradcam_bgr, cv2.COLOR_BGR2RGB)
         else:
             gradcam_rgb = np.array(img_resized)
