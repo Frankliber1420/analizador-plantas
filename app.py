@@ -335,12 +335,15 @@ def predict():
         
         if yolo_model is not None:
             results = yolo_model(pil_img)
-            # Solución para modelo segment (evita AttributeError 'detect')
+            # Solución definitiva segura para evitar AttributeError 'detect' con modelos de segmentación
             try:
-                gradcam_bgr = results[0].plot(boxes=False)
-            except TypeError:
-                gradcam_bgr = results[0].plot()
-            gradcam_rgb = cv2.cvtColor(gradcam_bgr, cv2.COLOR_BGR2RGB)
+                res_plotted = results[0].plot(boxes=False, conf=False)
+            except Exception:
+                try:
+                    res_plotted = results[0].orig_img
+                except Exception:
+                    res_plotted = np.array(pil_img)
+            gradcam_rgb = cv2.cvtColor(res_plotted, cv2.COLOR_BGR2RGB)
         else:
             gradcam_rgb = np.array(img_resized)
             
