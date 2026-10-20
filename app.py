@@ -318,6 +318,9 @@ def predict():
         image_bytes = file.read()
         pil_img = Image.open(io.BytesIO(image_bytes)).convert('RGB')
         
+        # Limitar tamaño máximo para proteger la RAM limitada en Render
+        pil_img.thumbnail((1024, 1024))
+        
         bokeh_img = aplicar_bokeh_unet(pil_img)
         img_resized = pil_img.resize((224, 224))
         
@@ -348,6 +351,10 @@ def predict():
         
         recom_data = RECOMMENDATIONS.get(raw_class, RECOMMENDATIONS['SANA'])
         
+        # Limpieza de caché de PyTorch para liberar memoria
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        
         return jsonify({
             'success': True,
             'predicted_class': predicted_class,
@@ -360,7 +367,9 @@ def predict():
             'chart': f"data:image/png;base64,{chart_b64}"
         })
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        print("[!] ERROR CRÍTICO EN /predict:")
+        traceback.print_exc()
+        return jsonify({'error': f"Error interno en el servidor: {str(e)}"}), 500
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
