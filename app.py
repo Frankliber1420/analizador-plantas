@@ -334,16 +334,16 @@ def predict():
             probabilities = [0.25, 0.25, 0.25, 0.25]
         
         if yolo_model is not None:
-            results = yolo_model(pil_img)
-            # Solución definitiva segura para evitar AttributeError 'detect' con modelos de segmentación
             try:
-                res_plotted = results[0].plot(boxes=False, conf=False)
-            except Exception:
+                results = yolo_model(pil_img)
                 try:
-                    res_plotted = results[0].orig_img
+                    res_plotted = results[0].plot(boxes=False, conf=False)
                 except Exception:
-                    res_plotted = np.array(pil_img)
-            gradcam_rgb = cv2.cvtColor(res_plotted, cv2.COLOR_BGR2RGB)
+                    res_plotted = results[0].orig_img
+                gradcam_rgb = cv2.cvtColor(res_plotted, cv2.COLOR_BGR2RGB)
+            except Exception as yolo_err:
+                print(f"[!] Aviso: No se pudo procesar YOLOv8 (usando fallback): {yolo_err}")
+                gradcam_rgb = np.array(img_resized)
         else:
             gradcam_rgb = np.array(img_resized)
             
